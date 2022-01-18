@@ -1,6 +1,17 @@
 require "bundler/setup"
 require "jets"
-Jets.once  # runs once in lambda execution context
+require 'ruby-prof'
+
+RubyProf.start
+Jets.once
+
+result = RubyProf.stop
+
+# print a flat profile to text
+printer = RubyProf::FlatPrinter.new(result)
+io = StringIO.new
+
+printer.print(STDOUT)
 
 <% @vars.functions.each do |function_name|
   handler = @vars.handler_for(function_name)
