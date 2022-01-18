@@ -8,9 +8,7 @@ Jets.once
 result = RubyProf.stop
 
 # print a flat profile to text
-printer = RubyProf::FlatPrinter.new(result)
-io = StringIO.new
-
+printer = RubyProf::FlatPrinter.new(result) 
 printer.print(STDOUT)
 
 <% @vars.functions.each do |function_name|
